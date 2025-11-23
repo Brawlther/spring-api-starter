@@ -1,4 +1,4 @@
-CREATE TABLE addresses
+CREATE TABLE IF NOT EXISTS addresses
 (
     id      BIGINT AUTO_INCREMENT NOT NULL,
     street  VARCHAR(255) NOT NULL,
@@ -9,14 +9,14 @@ CREATE TABLE addresses
     CONSTRAINT `PRIMARY` PRIMARY KEY (id)
 );
 
-CREATE TABLE categories
+CREATE TABLE IF NOT EXISTS categories
 (
     id   TINYINT AUTO_INCREMENT NOT NULL,
     name VARCHAR(255) NOT NULL,
     CONSTRAINT `PRIMARY` PRIMARY KEY (id)
 );
 
-CREATE TABLE products
+CREATE TABLE IF NOT EXISTS products
 (
     id            BIGINT AUTO_INCREMENT NOT NULL,
     name          VARCHAR(255)   NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE products
     CONSTRAINT `PRIMARY` PRIMARY KEY (id)
 );
 
-CREATE TABLE profiles
+CREATE TABLE IF NOT EXISTS profiles
 (
     id             BIGINT NOT NULL,
     bio            LONGTEXT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE profiles
     CONSTRAINT `PRIMARY` PRIMARY KEY (id)
 );
 
-CREATE TABLE users
+CREATE TABLE IF NOT EXISTS users
 (
     id       BIGINT AUTO_INCREMENT NOT NULL,
     name     VARCHAR(255) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE users
     CONSTRAINT `PRIMARY` PRIMARY KEY (id)
 );
 
-CREATE TABLE wishlist
+CREATE TABLE IF NOT EXISTS wishlist
 (
     product_id BIGINT NOT NULL,
     user_id    BIGINT NOT NULL,
