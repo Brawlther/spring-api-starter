@@ -30,7 +30,6 @@
         <java.version>23</java.version>
     </properties>
     <dependencies>
-
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
@@ -66,6 +65,7 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <groupId>org.springframework.boot</groupId>
         </dependency>
+        
         <dependency>
             <artifactId>mysql-connector-j</artifactId>
             <groupId>com.mysql</groupId>
