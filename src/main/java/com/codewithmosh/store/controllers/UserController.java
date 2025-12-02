@@ -1,5 +1,6 @@
 package com.codewithmosh.store.controllers;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.data.domain.Sort;
@@ -59,12 +60,20 @@ public class UserController {
     }
     
     @PostMapping
-    public ResponseEntity<UserDto> createUser(
+    public ResponseEntity<?> registerUser(
         @Valid
         @RequestBody 
         RegisterUserRequest request,
         UriComponentsBuilder uriBuilder
     ){
+        //validate business rules first
+        if(userRepository.existsByEmail(request.getEmail())){
+            return ResponseEntity.badRequest().body(
+                Map.of("email", "Email is already registered.")
+            );
+        }
+
+        //map and save new user
         var user = userMapper.toEntity(request);
         userRepository.save(user);
         var userDto = userMapper.toDto(user);
