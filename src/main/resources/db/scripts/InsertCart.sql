@@ -1,0 +1,2 @@
+
+CALL insert_cart();

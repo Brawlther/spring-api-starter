@@ -1,0 +1,4 @@
+CREATE PROCEDURE insert_cart()
+BEGIN
+    INSERT INTO carts () VALUES ();
+END
