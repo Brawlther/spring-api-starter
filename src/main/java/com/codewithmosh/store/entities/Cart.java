@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.UUID;
 
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,7 +32,7 @@ public class Cart {
     @Column(name = "date_created", insertable = false, updatable = false)
     private LocalDate dateCreated;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.MERGE, fetch = FetchType.EAGER, orphanRemoval = true)
     private Set<CartItem> items = new LinkedHashSet<>();
 
     public BigDecimal getTotalPrice() {
@@ -60,5 +61,17 @@ public class Cart {
             this.items.add(cartItem);
         }
         return cartItem;
+    }
+
+    public void removeItem(Long productId){
+        var cartItem = this.getItem(productId);
+        if(cartItem != null){
+            this.items.remove(cartItem);
+            cartItem.setCart(null);
+        }
+    }
+
+    public void clear(){
+        items.clear();
     }
 }
